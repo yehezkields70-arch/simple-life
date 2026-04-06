@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Simple Life{% endblock %}
+
+{% block content %}
+<h2>Daftar Reminder Kesehatan</h2>
+
+{% if reminders %}
+    <table class="reminder-table">
+        <thead>
+            <tr>
+                <th>Reminder</th>
+                <th>Kategori</th>
+                <th>Frekuensi</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reminder in reminders %}
+            <tr>
+                <td>{{ reminder.title }}</td>
+                <td>{{ reminder.category }}</td>
+                <td>{{ reminder.frequency }}</td>
+                <td>
+                    <a href="/delete/{{ reminder.id }}" class="btn-delete">Hapus</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p class="no-reminder">Belum ada reminder. <a href="/add">Buat sekarang!</a></p>
+{% endif %}
+{% endblock %}
